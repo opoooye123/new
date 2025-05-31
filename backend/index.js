@@ -23,7 +23,9 @@ app.use(cookieParser());
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'https://project-4-8uqs.onrender.com'
+        'https://back-l31n.onrender.com'
+
+
     ],
     credentials: true,
 }));
