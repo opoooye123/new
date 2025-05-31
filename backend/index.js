@@ -22,13 +22,12 @@ app.use(cookieParser());
 
 app.use(cors({
     origin: [
-        'http://localhost:5173',
-        'https://back-l31n.onrender.com'
-
-
+        'http://localhost:5173',                   // local dev
+        'https://ds-6ufs.onrender.com'            // your deployed frontend
     ],
     credentials: true,
 }));
+
 
 
 app.get('/', (req, res) => {
