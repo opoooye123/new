@@ -1,16 +1,22 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from '../constant';
+import { getToken } from '../authSlice'; // or wherever you store the token in Redux
 
 const baseQuery = fetchBaseQuery({
     baseUrl: BASE_URL,
-    credentials: 'include',  // ← this tells the browser to send cookies
+    credentials: 'include', // if you want cookies too
+    prepareHeaders: (headers, { getState }) => {
+        const token = getState().auth.token; // adapt path to where your token is
+        if (token) {
+            headers.set('Authorization', `Bearer ${token}`);
+        }
+        return headers;
+    },
 });
 
-
-
 export const apiSlice = createApi({
-    reducerPath: 'api',  // optional, defaults to 'api'
+    reducerPath: 'api',
     baseQuery,
     tagTypes: ['Product', 'Order', 'User', 'Category'],
-    endpoints: (builder) => ({}),  // define endpoints in feature slices
+    endpoints: (builder) => ({}),
 });
