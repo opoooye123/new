@@ -21,9 +21,13 @@ app.use(cookieParser());
 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: [
+        'http://localhost:5173',
+        'https://project-4-8uqs.onrender.com'
+    ],
     credentials: true,
 }));
+
 
 app.get('/', (req, res) => {
     res.send('Hello world')
