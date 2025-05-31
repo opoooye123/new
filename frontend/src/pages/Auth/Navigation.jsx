@@ -3,7 +3,7 @@ import { AiOutlineHome, AiOutlineShop, AiOutlineLogin, AiOutlineUserAdd } from '
 import { FaHeart } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../../redux/api/UserApiSlice';
+import { useLogoutMutation } from '../../redux/api/userApiSliceserApiSlice';
 import { logout } from '../../redux/features/auth/authSlice';
 import "./Navigation.css";
 
