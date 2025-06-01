@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../model/UserModel.js';
+import User from '../model/UserModel.js'
 import asyncHandler from './AsyncHandler.js';
 
 // Protect routes (authenticated users)

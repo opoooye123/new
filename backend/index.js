@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import categoryRoute from './utils/categoryRoute.js'
 import dotenv from 'dotenv';
 import userRouter from './routes/userRoutes.js';
 //utils
@@ -35,6 +36,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', userRouter)
+app.use('api/category', categoryRoute)
 app.listen(port, () => {
     console.log(`Listening to to backend at port: ${port}`)
 })

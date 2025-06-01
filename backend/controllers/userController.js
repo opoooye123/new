@@ -3,6 +3,9 @@ import asyncHandler from "../middleware/AsyncHandler.js";
 import { Error } from "mongoose";
 import generateToken from '../utils/createToken.js'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
+
+
 const createUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -40,21 +43,30 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 
-import jwt from 'jsonwebtoken';
-import User from '../model/UserModel.js';
-import asyncHandler from '../middleware/AsyncHandler.js';
-
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
-    if (user && (await user.matchPassword(password))) {
+    if (user) {
+        const isPasswordValid = await bcrypt.compare(password, user.password)
         const token = jwt.sign(
             { userId: user._id.toString() },
             process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
+
+        if (isPasswordValid) {
+            generateToken(res, user._id)
+
+            res.status(201).json({
+                _id: user._id,
+                username: user.username,
+                email: user.email
+
+
+            })
+        }
 
         res.cookie('jwt', token, {
             httpOnly: true,

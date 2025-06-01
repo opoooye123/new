@@ -1,6 +1,5 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from '../constant';
-import { getToken } from '../authSlice'; // or wherever you store the token in Redux
 
 const baseQuery = fetchBaseQuery({
     baseUrl: BASE_URL,
