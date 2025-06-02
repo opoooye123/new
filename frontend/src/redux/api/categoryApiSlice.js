@@ -12,12 +12,13 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
         }),
 
         updateCategory: builder.mutation({
-            query: ({ categoryId, updateCategoty }) => ({
-                url: `${CATEGORY_URL}/${categoryId},
-                method: 'PUT`,
-                body: updateCategoty
+            query: ({ categoryId, updatedCategory }) => ({
+                url: `${CATEGORY_URL}/${categoryId}`,
+                method: 'PUT',
+                body: updatedCategory,
             }),
         }),
+
 
         deleteCategory: builder.mutation({
             query: (categoryId) => ({
