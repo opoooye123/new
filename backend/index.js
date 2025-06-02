@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', userRouter)
-app.use('api/category', categoryRoute)
+app.use('/api/category', categoryRoute)
 app.listen(port, () => {
     console.log(`Listening to to backend at port: ${port}`)
 })
