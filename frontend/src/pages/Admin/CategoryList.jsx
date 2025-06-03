@@ -68,21 +68,25 @@ const CategoryList = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error("Updating category failed, try again");
+            /* toast.error("Updating category failed, try again"); */
         }
     };
 
     const handleDeleteCategory = async () => {
         try {
             const result = await deleteCategory(selectedCategory._id).unwrap();
-            toast.success(`${result.name} is deleted`);
-            setSelectedCategory(null);
-            setModalVisible(false);
+            if (result.error) {
+                toast.error(result.error);
+            } else {
+                toast.success(`${result.name} is deleted`);
+                setSelectedCategory(null);
+                setModalVisible(false);
+                await refetch();
+            }
         } catch (error) {
-            console.error(error);
-            toast.error('Category deletion failed. Try again');
+            console.log(error);
+            toast.error("Category deletion failed. Try again");
         }
-
     };
 
     return (
